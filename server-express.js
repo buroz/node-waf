@@ -8,7 +8,7 @@ ruleWhereKey = ruleWhere[1];
 
 const http = require('http');
 
-var server = http.createServer(function (req, res) {
+http.createServer(function (req, res) {
 	const parts = url.parse(req.url, true);
 	const query = parts.query;
 	console.log(req);
