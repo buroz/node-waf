@@ -55,7 +55,7 @@ const rules = module.exports =
                 "transform": 3
             }
         }
-    },
+    },/*
     "5": {
         "why": "Local file inclusion",
         "level": 3,
@@ -67,8 +67,8 @@ const rules = module.exports =
                 "operator": 5
             }
         }
-    },
-    "6": {
+    },*/
+    /*"6": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
@@ -79,8 +79,8 @@ const rules = module.exports =
                 "operator": 5
             }
         }
-    },
-    "50": {
+    },*/
+    /*"50": {
         "why": "Remote file inclusion",
         "level": 3,
         "enable": 1,
@@ -92,8 +92,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "52": {
+    },*/
+    /*"52": {
         "why": "Remote file inclusion",
         "level": 3,
         "enable": 1,
@@ -105,8 +105,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "53": {
+    },*/
+    /*"53": {
         "why": "Remote file inclusion",
         "level": 3,
         "enable": 1,
@@ -118,8 +118,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "100": {
+    },*/
+    /*"100": {
         "why": "Cross-site scripting",
         "level": 2,
         "enable": 1,
@@ -131,7 +131,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "101": {
         "why": "Cross-site scripting",
         "level": 3,
@@ -145,7 +145,7 @@ const rules = module.exports =
             }
         }
     },
-    "102": {
+    /*"102": {
         "why": "Cross-site scripting",
         "level": 2,
         "enable": 1,
@@ -157,7 +157,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "104": {
         "why": "Cross-site scripting",
         "level": 2,
@@ -210,7 +210,7 @@ const rules = module.exports =
             }
         }
     },
-    "108": {
+    /*"108": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -222,7 +222,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "109": {
         "why": "Cross-site scripting",
         "level": 2,
@@ -236,7 +236,7 @@ const rules = module.exports =
             }
         }
     },
-    "110": {
+    /*"110": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -248,8 +248,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "111": {
+    },*/
+    /*"111": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -261,8 +261,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "112": {
+    },*/
+    /*"112": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -274,8 +274,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "113": {
+    },*/
+    /*"113": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -287,8 +287,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "114": {
+    },*/
+    /*"114": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -300,8 +300,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "115": {
+    },*/
+    /*"115": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -313,7 +313,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "116": {
         "why": "Cross-site scripting",
         "level": 3,
@@ -366,7 +366,7 @@ const rules = module.exports =
             }
         }
     },
-    "120": {
+    /*"120": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -378,7 +378,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "121": {
         "why": "Cross-site scripting",
         "level": 2,
@@ -407,7 +407,7 @@ const rules = module.exports =
             }
         }
     },
-    "123": {
+    /*"123": {
         "why": "Cross-site scripting",
         "level": 2,
         "enable": 1,
@@ -420,8 +420,8 @@ const rules = module.exports =
                 "transform": 2
             }
         }
-    },
-    "124": {
+    },*/
+    /*"124": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -434,7 +434,7 @@ const rules = module.exports =
                 "transform": 2
             }
         }
-    },
+    },*/
     "125": {
         "why": "Cross-site scripting",
         "level": 2,
@@ -477,7 +477,7 @@ const rules = module.exports =
             }
         }
     },
-    "150": {
+    /*"150": {
         "why": "Mail header injection",
         "level": 2,
         "enable": 1,
@@ -490,7 +490,7 @@ const rules = module.exports =
                 "nocompress": 1
             }
         }
-    },
+    },*/
     "153": {
         "why": "SSI command injection",
         "level": 2,
@@ -504,7 +504,7 @@ const rules = module.exports =
             }
         }
     },
-    "154": {
+    /*"154": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
@@ -516,8 +516,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "155": {
+    },*/
+    /*"155": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
@@ -529,8 +529,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "156": {
+    },*/
+    /*"156": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
@@ -542,7 +542,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "160": {
         "why": "Shellshock vulnerability (CVE-2014-6271)",
         "level": 3,
@@ -575,7 +575,7 @@ const rules = module.exports =
             }
         }
     },
-    "251": {
+    /*"251": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
@@ -593,7 +593,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "252": {
         "why": "SQL injection",
         "level": 3,
@@ -613,7 +613,7 @@ const rules = module.exports =
             }
         }
     },
-    "253": {
+    /*"253": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
@@ -625,8 +625,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "254": {
+    },*/
+    /*"254": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
@@ -638,8 +638,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "256": {
+    },*/
+    /*"256": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
@@ -652,7 +652,7 @@ const rules = module.exports =
                 "transform": 1
             }
         }
-    },
+    },*/
     "257": {
         "why": "SQL injection",
         "level": 2,
@@ -681,7 +681,7 @@ const rules = module.exports =
             }
         }
     },
-    "259": {
+    /*"259": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
@@ -699,7 +699,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "260": {
         "why": "SQL injection",
         "level": 3,
@@ -936,7 +936,7 @@ const rules = module.exports =
             }
         }
     },
-    "277": {
+    /*"277": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
@@ -948,7 +948,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "278": {
         "why": "SQL injection",
         "level": 3,
@@ -1061,7 +1061,7 @@ const rules = module.exports =
             }
         }
     },
-    "286": {
+    /*"286": {
         "why": "SQL injection",
         "level": 2,
         "enable": 1,
@@ -1073,7 +1073,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "300": {
         "why": "Leading quote",
         "level": 2,
@@ -1087,7 +1087,7 @@ const rules = module.exports =
             }
         }
     },
-    "301": {
+    /*"301": {
         "why": "Potential reflected file download attempt",
         "level": 3,
         "enable": 1,
@@ -1099,7 +1099,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "302": {
         "why": "PHP variable",
         "level": 2,
@@ -1149,7 +1149,7 @@ const rules = module.exports =
             }
         }
     },
-    "306": {
+    /*"306": {
         "why": "Bogus user-agent signature",
         "level": 1,
         "enable": 1,
@@ -1160,7 +1160,7 @@ const rules = module.exports =
                 "operator": 5
             }
         }
-    },
+    },*/
     "307": {
         "why": "Excessive user-agent string length (300+ characters)",
         "level": 2,
@@ -1199,7 +1199,7 @@ const rules = module.exports =
             }
         }
     },
-    "310": {
+    /*"310": {
         "why": "Access to a configuration file",
         "level": 2,
         "enable": 1,
@@ -1210,8 +1210,8 @@ const rules = module.exports =
                 "operator": 5
             }
         }
-    },
-    "311": {
+    },*/
+    /*"311": {
         "why": "Large set of Hex characters",
         "level": 2,
         "enable": 1,
@@ -1222,7 +1222,7 @@ const rules = module.exports =
                 "operator": 5
             }
         }
-    },
+    },*/
     "312": {
         "why": "Non-compliant IP found in HTTP headers",
         "level": 1,
@@ -1297,7 +1297,7 @@ const rules = module.exports =
             }
         }
     },
-    "318": {
+    /*"318": {
         "why": "Obfuscated data",
         "level": 3,
         "enable": 1,
@@ -1309,8 +1309,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "319": {
+    },*/
+    /*"319": {
         "why": "Obfuscated data",
         "level": 3,
         "enable": 1,
@@ -1329,8 +1329,8 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    "320": {
+    },*/
+    /*"320": {
         "why": "Obfuscated data",
         "level": 3,
         "enable": 1,
@@ -1341,8 +1341,8 @@ const rules = module.exports =
                 "operator": 5
             }
         }
-    },
-    "350": {
+    },*/
+    /*"350": {
         "why": "Shell\/backdoor",
         "level": 3,
         "enable": 1,
@@ -1353,7 +1353,7 @@ const rules = module.exports =
                 "operator": 5
             }
         }
-    },
+    },*/
     "351": {
         "why": "Shell\/backdoor",
         "level": 3,
@@ -1584,7 +1584,7 @@ const rules = module.exports =
             }
         }
     },
-    "520": {
+    /*"520": {
         "why": "Data URI scheme or PHP built-in wrappers",
         "level": 3,
         "enable": 1,
@@ -1596,7 +1596,7 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
+    },*/
     "531": {
         "why": "Suspicious bots\/scanners",
         "level": 1,
@@ -1604,7 +1604,8 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "HTTP_USER_AGENT",
-                "what": "(?i:acunetix|analyzer|AhrefsBot|backdoor|bandit|blackwidow|BOT for JCE|core-project|dts agent|emailmagnet|ex(ploit|tract)|flood|grabber|harvest|httrack|havij|hunter|indy library|inspect|LoadTimeBot|mfibot|Microsoft URL Control|Miami Style|morfeus|nessus|NetLyzer|pmafind|scanner|siphon|spbot|sqlmap|survey|teleport|updown_tester|xovibot)",
+                "what": "(acunetix|analyzer|AhrefsBot|backdoor|bandit|blackwidow|BOT for JCE|core-project|dts agent|emailmagnet|ex(ploit|tract)|flood|grabber|harvest|httrack|havij|hunter|indy library|inspect|LoadTimeBot|mfibot|Microsoft URL Control|Miami Style|morfeus|nessus|NetLyzer|pmafind|scanner|siphon|spbot|sqlmap|survey|teleport|updown_tester|xovibot)",
+				"modifier": "i",
                 "operator": 5,
                 "normalize": 1
             }
@@ -1617,7 +1618,8 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST",
-                "what": "^(?i:127\\.0\\.0\\.1|localhost|::1)$",
+                "what": "^(127\\.0\\.0\\.1|localhost|::1)$",
+				"modifier": "i",
                 "operator": 5,
                 "normalize": 1
             }
