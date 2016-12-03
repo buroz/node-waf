@@ -11,6 +11,23 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanielRuf/node-waf"
+  },
+  "bugs": {
+    "url": "https://github.com/DanielRuf/node-waf/issues"
+  },
+  "keywords": [
+    "firewall",
+    "waf",
+    "attack",
+    "xss",
+    "sqlinjection",
+    "sqli",
+    "bot",
+    "protection"
+  ],
+  "author": "Daniel Ruf <kontakt@daniel-ruf.de> (https://github.com/DanielRuf)",
   "license": "ISC"
 }
