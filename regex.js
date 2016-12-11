@@ -1,9 +1,4 @@
 const rules = require('./rules');
-
-// var s = " eval( ";
-// var t = s.match(/\b(eval)\s*\(/i);
-// console.log(t);
-
 const attack_string = 'localHost';
 
 console.time("RegEx test");
