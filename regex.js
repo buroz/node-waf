@@ -11,7 +11,7 @@ function getNanoSecTime() {
 
 const start = getNanoSecTime();
 
-const attack_string = 'localhost';
+const attack_string = 'localHost';
 
 for (let rule in rules) {
 	// @todo: testing, testing, testing
@@ -19,7 +19,7 @@ for (let rule in rules) {
 	if(
 	current_rule.enable &&
 	current_rule.chain[1].where.split('|').indexOf('GET') !== -1 &&
-	attack_string.match(new RegExp(current_rule.chain[1].what, current_rule.chain[1].modifier)) !== null
+	attack_string.match(current_rule.chain[1].what) !== null
 	){
 		console.log(current_rule.why);
 		//break;

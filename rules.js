@@ -7,7 +7,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT|PHP_SELF|PATH_INFO",
-                "what": "(?:\\.{2}[\\\/]+){2}\\b[a-zA-Z]",
+                "what": /(?:\.{2}[\/]+){2}\b[a-zA-Z]/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 3
@@ -21,7 +21,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|SERVER:HTTP_USER_AGENT|SERVER:HTTP_REFERER|REQUEST_URI|PHP_SELF|PATH_INFO",
-                "what": "\\x0",
+                "what": /\x0/,
                 "operator": 5,
                 "normalize": 1,
                 "nocompress": 1
@@ -35,7 +35,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|SERVER:HTTP_USER_AGENT",
-                "what": "\\b(?:proc\/self\/|etc\/passwd)\\b",
+                "what": /\b(?:proc\/self\/|etc\/passwd)\b/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 3
@@ -49,13 +49,13 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "POST",
-                "what": "\\betc\/passwd$",
+                "what": /\betc\/passwd$/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 3
             }
         }
-    },/*
+    },
     "5": {
         "why": "Local file inclusion",
         "level": 3,
@@ -63,23 +63,23 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|SERVER:HTTP_USER_AGENT",
-                "what": "\\b(?i)(?:include|require)(?:_once)?\\s*.{0,10}\\s*sys_get_temp_dir\\b",
+                "what": /\b(?:include|require)(?:_once)?\s*.{0,10}\s*sys_get_temp_dir\b/i,
                 "operator": 5
             }
         }
-    },*/
-    /*"6": {
+    },
+    "6": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "COOKIE:id",
-                "what": "\\b(?i:eval)\\s*\\(",
+                "what": /\b(?:eval)\s*\(/i,
                 "operator": 5
             }
         }
-    },*/
+    },
     /*"50": {
         "why": "Remote file inclusion",
         "level": 3,
@@ -1598,28 +1598,26 @@ const rules = module.exports =
         }
     },*/
     "531": {
-        "why": "Suspicious bots\/scanners",
+        "why": "Suspicious bots/scanners",
         "level": 1,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "HTTP_USER_AGENT",
-                "what": "(acunetix|analyzer|AhrefsBot|backdoor|bandit|blackwidow|BOT for JCE|core-project|dts agent|emailmagnet|ex(ploit|tract)|flood|grabber|harvest|httrack|havij|hunter|indy library|inspect|LoadTimeBot|mfibot|Microsoft URL Control|Miami Style|morfeus|nessus|NetLyzer|pmafind|scanner|siphon|spbot|sqlmap|survey|teleport|updown_tester|xovibot)",
-				"modifier": "i",
+                "what": /(acunetix|analyzer|AhrefsBot|backdoor|bandit|blackwidow|BOT for JCE|core-project|dts agent|emailmagnet|ex(ploit|tract)|flood|grabber|harvest|httrack|havij|hunter|indy library|inspect|LoadTimeBot|mfibot|Microsoft URL Control|Miami Style|morfeus|nessus|NetLyzer|pmafind|scanner|siphon|spbot|sqlmap|survey|teleport|updown_tester|xovibot)/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
     },
     "540": {
-        "why": "Localhost IP in GET\/POST request",
+        "why": "Localhost IP in GET/POST request",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST",
-                "what": "^(127\\.0\\.0\\.1|localhost|::1)$",
-				"modifier": "i",
+                "what": /^(127\.0\.0\.1|localhost|::1)$/i,
                 "operator": 5,
                 "normalize": 1
             }
