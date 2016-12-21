@@ -80,59 +80,59 @@ const rules = module.exports =
             }
         }
     },
-    /*"50": {
+    "50": {
         "why": "Remote file inclusion",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": "^(?i:https?|ftp):\/\/.+\/[^&\/]+\\?$",
+                "what": /^(https?|ftp):\/\/.+\/[^&\/]+\\?$/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"52": {
+    },
+    "52": {
         "why": "Remote file inclusion",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT",
-                "what": "\\b(?i)(?:include|require)(?:_once)?\\s*.{0,10}['\"](?:https?|ftp):\/\/",
+                "what": /\b(?:include|require)(?:_once)?\s*.{0,10}['\"](?:https?|ftp):\/\//i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"53": {
+    },
+    "53": {
         "why": "Remote file inclusion",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": "^(?i:ftp):\/\/(?:.+?:.+?\\@)?[^\/]+\/.",
+                "what": /^(ftp):\/\/(?:.+?:.+?\\@)?[^\/]+\/./i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"100": {
+    },
+    "100": {
         "why": "Cross-site scripting",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "<(?i:applet|div|embed|form|i?frame(?:set)?|i(?:mg|sindex)|link|m(?:eta|arquee)|object|script|textarea)\\b.*=.*?>",
+                "what": /<(applet|div|embed|form|i?frame(?:set)?|i(?:mg|sindex)|link|m(?:eta|arquee)|object|script|textarea)\b.*=.*?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    "101": {
+    },
+    /*"101": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
@@ -144,20 +144,20 @@ const rules = module.exports =
                 "normalize": 1
             }
         }
-    },
-    /*"102": {
+    },*/
+    "102": {
         "why": "Cross-site scripting",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "<.+?(?i)\\b(?:href|(?:form)?action|background|code|data|location|name|poster|src|value)\\s*=\\s*['\"]?(?:(?:f|ht)tps?:)?\/\/\\w+\\.\\w",
+                "what": /<.+?\b(?:href|(?:form)?action|background|code|data|location|name|poster|src|value)\s*=\s*['\"]?(?:(?:f|ht)tps?:)?\/\/\w+\.\w/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "104": {
         "why": "Cross-site scripting",
         "level": 2,
