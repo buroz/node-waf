@@ -132,19 +132,19 @@ const rules = module.exports =
             }
         }
     },
-    /*"101": {
+    "101": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\W(?:background(-image)?|-moz-binding)\\s*:[^}]*?\\burl\\s*\\([^)]+?(https?:)?\/\/\\w",
+                "what": /\W(?:background(-image)?|-moz-binding)\s*:[^}]*?\burl\s*\([^)]+?(https?:)?\/\/\w/,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "102": {
         "why": "Cross-site scripting",
         "level": 2,
