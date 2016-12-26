@@ -1,0 +1,1 @@
+Web Application Firewall (WIP) for node. The rules are from NinjaFirewall by [NinTechNet](https://nintechnet.com/).
