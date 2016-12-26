@@ -210,19 +210,19 @@ const rules = module.exports =
             }
         }
     },
-    /*"108": {
+    "108": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i)<\\s*s\\s*t\\s*y\\s*l\\s*e\\b.*?>.*?<\\s*\/\\s*s\\s*t\\s*y\\s*l\\s*e\\b.*?>",
+                "what": /<\s*s\s*t\s*y\s*l\s*e\b.*?>.*?<\s*\/\s*s\s*t\s*y\s*l\s*e\b.*?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "109": {
         "why": "Cross-site scripting",
         "level": 2,
@@ -236,84 +236,84 @@ const rules = module.exports =
             }
         }
     },
-    /*"110": {
+    "110": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i)<[a-z].+?\\bon[a-z]{3,19}\\b\\s*=.{5}",
+                "what": /<[a-z].+?\bon[a-z]{3,19}\b\s*=.{5}/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"111": {
+    },
+    "111": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "POST",
-                "what": "(?i)<.+?\\bon[a-z]{3,19}\\b\\s*=.+?>",
+                "what": /<.+?\bon[a-z]{3,19}\b\s*=.+?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"112": {
+    },
+    "112": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "<.+?(?i)[a-z]+\\s*=.*?(?:java|vb)script:.+?>",
+                "what": /<.+?[a-z]+\s*=.*?(?:java|vb)script:.+?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"113": {
+    },
+    "113": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "POST",
-                "what": "<.+?(?i)[a-z]+\\s*=.*?(?:java|vb)script:.+?>",
+                "what": /<.+?[a-z]+\s*=.*?(?:java|vb)script:.+?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"114": {
+    },
+    "114": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "QUERY_STRING|GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT|REQUEST_URI",
-                "what": "(?i)<\\s*s\\s*c\\s*r\\s*i\\s*p\\s*t\\b.*?>.*?<\\s*\/\\s*s\\s*c\\s*r\\s*i\\s*p\\s*t.*?>",
+                "what": /<\s*s\s*c\s*r\s*i\s*p\s*t\b.*?>.*?<\s*\/\s*s\s*c\s*r\s*i\s*p\s*t.*?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"115": {
+    },
+    "115": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "POST",
-                "what": "(?i)<\\s*s\\s*c\\s*r\\s*i\\s*p\\s*t\\b.*?>.*?<\\s*\/\\s*s\\s*c\\s*r\\s*i\\s*p\\s*t.*?>",
+                "what": /<\s*s\s*c\s*r\s*i\s*p\s*t\b.*?>.*?<\s*\/\s*s\s*c\s*r\s*i\s*p\s*t.*?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "116": {
         "why": "Cross-site scripting",
         "level": 3,
@@ -366,19 +366,19 @@ const rules = module.exports =
             }
         }
     },
-    /*"120": {
+    "120": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i)<[a-z]+\/[a-z]+.+?=.+?>",
+                "what": /<[a-z]+\/[a-z]+.+?=.+?>/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "121": {
         "why": "Cross-site scripting",
         "level": 2,
@@ -407,34 +407,34 @@ const rules = module.exports =
             }
         }
     },
-    /*"123": {
+    "123": {
         "why": "Cross-site scripting",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET",
-                "what": "\\b(?i:document|window|this)\\s*\\[.+?\\]\\s*[\\[(]",
+                "what": /\b(?:document|window|this)\s*\[.+?\]\s*[\[(]/i,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 2
             }
         }
-    },*/
-    /*"124": {
+    },
+    "124": {
         "why": "Cross-site scripting",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "HTTP_X_FORWARDED_FOR|HTTP_USER_AGENT",
-                "what": "(?i)\\bjavascript:",
+                "what": /\bjavascript:/i,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 2
             }
         }
-    },*/
+    },
     "125": {
         "why": "Cross-site scripting",
         "level": 2,
