@@ -1267,7 +1267,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|HTTP_HOST|SERVER_PROTOCOL|SERVER:HTTP_USER_AGENT|QUERY_STRING|SERVER:HTTP_REFERER|HTTP_COOKIE",
-                "what": ">.*?\/[.\/]*dev\/[.\/]*(?:tc|ud)p\/[.\/]*[^\/]{5,255}\/[.\/]*\\d{1,5}\\b",
+                "what": />.*?\/[.\/]*dev\/[.\/]*(?:tc|ud)p\/[.\/]*[^\/]{5,255}\/[.\/]*\d{1,5}\b/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1280,7 +1280,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "\/e[\\d]\\.php$",
+                "what": /\/e[\d]\.php$/,
                 "operator": 5
             }
         }
@@ -1292,24 +1292,24 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "\/\\.[^\/]+\\.ph(?:p[345]?|t|tml)$",
+                "what": /\/\.[^\/]+\.ph(?:p[345]?|t|tml)$/,
                 "operator": 5
             }
         }
     },
-    /*"318": {
+    "318": {
         "why": "Obfuscated data",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i:\\bchr\\b\\s*\\(\\s*\\d{1,3}\\s*\\).+?){4}",
+                "what": /(?:\bchr\b\s*\(\s*\d{1,3}\s*\).+?){4}/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     /*"319": {
         "why": "Obfuscated data",
         "level": 3,
