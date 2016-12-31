@@ -165,7 +165,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT",
-                "what": "\\b(?:alert|confirm|eval|expression|prompt|set(?:Timeout|Interval)|String\\s*\\.\\s*fromCharCode|\\.\\s*substr)\\b\\s*\\(.*?\\)",
+                "what": /\b(?:alert|confirm|eval|expression|prompt|set(?:Timeout|Interval)|String\s*\.\s*fromCharCode|\.\s*substr)\b\s*\(.*?\)/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -178,7 +178,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT",
-                "what": "\\bdocument\\s*\\.\\s*(?:body|cookie|location|open|write(?:ln)?)\\b",
+                "what": /\bdocument\s*\.\s*(?:body|cookie|location|open|write(?:ln)?)\b/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -191,7 +191,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT",
-                "what": "\\blocation\\s*\\.\\s*(?:href|replace)\\b",
+                "what": /\blocation\s*\.\s*(?:href|replace)\b/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -204,7 +204,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT",
-                "what": "\\bwindow\\s*\\.\\s*(?:open|location)\\b",
+                "what": /\bwindow\s*\.\s*(?:open|location)\b/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -230,7 +230,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "^\\s*\/?>",
+                "what": /^\s*\/?>/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -321,7 +321,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "<x:script\\b.*?>.*?<\/x:script.*?>",
+                "what": /<x:script\b.*?>.*?<\/x:script.*?>/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -334,7 +334,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "[{}+[\\]\\s]\\+\\s*\\[\\s*]\\s*\\)\\s*\\[[{!}+[\\]\\s]",
+                "what": /[{}+[\]\s]\+\s*\[\s*]\s*\)\s*\[[{!}+[\]\s]/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -347,7 +347,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\+A(?:Dw|ACIAPgA8)-.+?\\+AD4(?:APAAi)?-",
+                "what": /\+A(?:Dw|ACIAPgA8)-.+?\+AD4(?:APAAi)?-/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -360,7 +360,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET",
-                "what": "\\xBC\/script\\xBE",
+                "what": /\xBC\/script\xBE/,
                 "operator": 3,
                 "normalize": 1
             }
@@ -386,7 +386,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\batob\\s*(?:['\"\\x60]\\s*\\]\\s*)?\\(\\s*(['\"\\x60])[a-zA-Z0-9\/+=]+\\1\\s*\\)",
+                "what": /\batob\s*(?:['\"\x60]\s*\]\s*)?\(\s*(['\"\x60])[a-zA-Z0-9\/+=]+\1\s*\)/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 2
@@ -400,7 +400,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\[\\s*\\]\\s*\\[\\s*['\"\\x60]filter['\"\\x60]\\s*\\]\\s*\\[\\s*['\"\\x60]constructor['\"\\x60]\\s*\\]\\s*\\(\\s*",
+                "what": /\[\s*\]\s*\[\s*['\"\x60]filter['\"\x60]\s*\]\s*\[\s*['\"\x60]constructor['\"\x60]\s*\]\s*\(\s*/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 2
@@ -442,7 +442,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|HTTP_USER_AGENT",
-                "what": "(?:(?:\\b(?:self|this|top|window)\\s*\\[.+?\\]|\\(\\s*(?:alert|confirm|eval|expression|prompt)\\s*\\)|\\[.*?\\]\\s*\\.\\s*find)|(?:\\.\\s*(?:re(?:ject|place)|constructor)))\\s*\\(.*?\\)",
+                "what": /(?:(?:\b(?:self|this|top|window)\s*\[.+?\]|\(\s*(?:alert|confirm|eval|expression|prompt)\s*\)|\[.*?\]\s*\.\s*find)|(?:\.\s*(?:re(?:ject|place)|constructor)))\s*\(.*?\)/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 2
@@ -456,7 +456,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|HTTP_USER_AGENT",
-                "what": "\\b(\\w+)\\s*=\\s*(?:alert|confirm|eval|expression|prompt)\\s*[;,]\\1\\s*\\(.*?\\)",
+                "what": /\b(\w+)\s*=\s*(?:alert|confirm|eval|expression|prompt)\s*[;,]\1\s*\(.*?\)/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 2
@@ -470,27 +470,27 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|HTTP_USER_AGENT",
-                "what": "\\bFunction\\s*[({].*?[})]\\s*\\(.*?\\)|\\bfunction\\s*\\(.*?\\)\\s*{.*?}|(?:\\[|new)\\s*class\\s*extends\\b|\\bArray\\s*.\\s*from\\b",
+                "what": /\bFunction\s*[({].*?[})]\s*\(.*?\)|\bfunction\s*\(.*?\)\s*{.*?}|(?:\[|new)\s*class\s*extends\b|\bArray\s*.\s*from\b/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 2
             }
         }
     },
-    /*"150": {
+    "150": {
         "why": "Mail header injection",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST",
-                "what": "\\x0A\\b(?i:(?:reply-)?to|b?cc|content-[td]\\w)\\b\\s*:.*?\\@",
+                "what": /\x0A\b((?:reply-)?to|b?cc|content-[td]\w)\b\s*:.*?\@/i,
                 "operator": 5,
                 "normalize": 1,
                 "nocompress": 1
             }
         }
-    },*/
+    },
     "153": {
         "why": "SSI command injection",
         "level": 2,
@@ -498,25 +498,25 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "<!--#(?:config|echo|exec|flastmod|fsize|include)\\b.+?-->",
+                "what": /<!--#(?:config|echo|exec|flastmod|fsize|include)\b.+?-->/,
                 "operator": 5,
                 "normalize": 1
             }
         }
     },
-    /*"154": {
+    "154": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "COOKIE|HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "(?s:<\\?.+)|#!\/(?:usr|bin)\/.+?\\s",
+                "what": /(<\?[\s\S]+)|#!\/(?:usr|bin)\/.+?\s/,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     /*"155": {
         "why": "Code injection",
         "level": 3,
