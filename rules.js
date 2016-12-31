@@ -87,7 +87,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": /^(https?|ftp):\/\/.+\/[^&\/]+\\?$/i,
+                "what": /^(?:https?|ftp):\/\/.+\/[^&\/]+\\?$/i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -113,7 +113,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": /^(ftp):\/\/(?:.+?:.+?\\@)?[^\/]+\/./i,
+                "what": /^(?:ftp):\/\/(?:.+?:.+?\\@)?[^\/]+\/./i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -126,7 +126,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": /<(applet|div|embed|form|i?frame(?:set)?|i(?:mg|sindex)|link|m(?:eta|arquee)|object|script|textarea)\b.*=.*?>/i,
+                "what": /<(?:applet|div|embed|form|i?frame(?:set)?|i(?:mg|sindex)|link|m(?:eta|arquee)|object|script|textarea)\b.*=.*?>/i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -524,7 +524,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": /(?:<\?(?![Xx][Mm][Ll]).*?(?:\$_?(?:COOKIE|ENV|FILES|GLOBALS|(?:GE|POS|REQUES)T|SE(RVER|SSION))\s*[=\[)]|\b(array_map|assert|base64_(?:de|en)code|curl_exec|eval|(?:ex|im)plode|file(?:_get_contents)?|fsockopen|function_exists|gzinflate|move_uploaded_file|passthru|preg_replace|phpinfo|stripslashes|strrev|substr|system|(?:shell_)?exec)\s*(?:\/\*.+?\*\/\s*)?\())|#!\/(?:usr|bin)\/.+?\s|\W\$\{\s*['\"]\w+['\"]/i,
+                "what": /(?:<\?(?![Xx][Mm][Ll]).*?(?:\$_?(?:COOKIE|ENV|FILES|GLOBALS|(?:GE|POS|REQUES)T|SE(RVER|SSION))\s*[=\[)]|\b(?:array_map|assert|base64_(?:de|en)code|curl_exec|eval|(?:ex|im)plode|file(?:_get_contents)?|fsockopen|function_exists|gzinflate|move_uploaded_file|passthru|preg_replace|phpinfo|stripslashes|strrev|substr|system|(?:shell_)?exec)\s*(?:\/\*.+?\*\/\s*)?\())|#!\/(?:usr|bin)\/.+?\s|\W\$\{\s*['\"]\w+['\"]/i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -537,7 +537,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": /\b(eval)\s*\(\s*(base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\s*\(/i,
+                "what": /\b(?:eval)\s*\(\s*(?:base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\s*\(/i,
                 "operator": 5,
                 "normalize": 1
             }
