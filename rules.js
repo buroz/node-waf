@@ -803,7 +803,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,30}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,20})?\\balter\\s+(?:(?:database|schema)\\b|table\\s+.{1,70}\\s+rename\\b|(?:ignore\\s+)?table\\b|user\\b(?:\\s+if\\s+exists\\s)?.{1,38}@).{1,70}",
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,20})?\balter\s+(?:(?:database|schema)\b|table\s+.{1,70}\s+rename\b|(?:ignore\s+)?table\b|user\b(?:\s+if\s+exists\s)?.{1,38}@).{1,70}/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -817,7 +817,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,30}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,20})?\\bcreate\\s+(?:(?:database|schema|(?:temporary\\s+)?table)\\s+(?:if\\s+not\\s+exists\\b)?.{1,70}|user\\s+.{1,38}@.{1,38}\\s+identified\\s+by\\s+)",
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\\b|\|\||&&).{0,20})?\bcreate\s+(?:(?:database|schema|(?:temporary\s+)?table)\s+(?:if\s+not\s+exists\b)?.{1,70}|user\s+.{1,38}@.{1,38}\s+identified\s+by\s+)/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -831,7 +831,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,30}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,20})?\\bdrop\\s+(?:(?:table\\b|index\\b.{1,60}\\son\\b|(?:database|schema)\\s+(?:if\\s+exists\\b)?).{1,70}|user\\s+(?:if\\s+exists\\b)?.{1,38}@.{1,38})",
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,20})?\bdrop\s+(?:(?:table\b|index\b.{1,60}\son\b|(?:database|schema)\s+(?:if\s+exists\b)?).{1,70}|user\s+(?:if\s+exists\b)?.{1,38}@.{1,38})/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -845,7 +845,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,30}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,20})?\\brename\\s+table\\s+.{1,70}\\s+to\\s.{1,70}",
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,20})?\brename\s+table\s+.{1,70}\s+to\s.{1,70}/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -859,7 +859,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,30}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,20})?\\bload\\s+data\\s+(?:(?:low_priority\\s+|concurrent\\s+)?local\\s+)?infile\\b.{1,500}\\binto\\s+table\\b.{2}",
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,20})?\bload\s+data\s+(?:(?:low_priority\s+|concurrent\s+)?local\s+)?infile\b.{1,500}\binto\s+table\b.{2}/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -873,7 +873,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,30}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,20})?\\btruncate\\s+table\\s.{1,70}",
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,20})?\btruncate\s+table\s.{1,70}/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -887,7 +887,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,30}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,20})?\\bselect\\b.{1,200}\\binto\\s+(?:(?:dump|out)file\\s|@\\w).{10}",
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,20})?\bselect\b.{1,200}\binto\s+(?:(?:dump|out)file\s|@\w).{10}/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -901,7 +901,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,50}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,30})?\\bload_file\\s+\/.{3,15}\/\\w",
+                "what": /^.{0,50}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,30})?\bload_file\s+\/.{3,15}\/\w/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -915,7 +915,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,50}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,30})?\\bdelete\\b.{1,100}\\bfrom\\b.{1,100}\\bwhere\\b.{1,100}(?:=|null)",
+                "what": /^.{0,50}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,30})?\bdelete\b.{1,100}\bfrom\b.{1,100}\bwhere\b.{1,100}(?:=|null)/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -929,26 +929,26 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,50}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,30})?\\bset\\s+password\\b(?:\\s+for\\s.{1,38}@.{1,60}=|\\s*=.+?\\bwhere\\s+user\\s*=)",
+                "what": /^.{0,50}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,30})?\bset\s+password\b(?:\s+for\s.{1,38}@.{1,60}=|\s*=.+?\bwhere\s+user\s*=)/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
             }
         }
     },
-    /*"277": {
+    "277": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i)(?:\\b|\\d)insert\\b.+?(?:\\b|\\d)into\\b.{1,150}(?:\\b|\\d)values\\b.*?\\(.+?\\)",
+                "what": /(?:\b|\d)insert\b.+?(?:\b|\d)into\b.{1,150}(?:\b|\d)values\b.*?\(.+?\)/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "278": {
         "why": "SQL injection",
         "level": 3,
@@ -956,7 +956,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,50}(?:(?:\\b(?:and|or|union)\\b|\\|\\||&&).{0,30})?\\bupdate\\s.{1,100}\\bset\\s.{1,50}=.",
+                "what": /^.{0,50}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,30})?\bupdate\s.{1,100}\bset\s.{1,50}=./,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -970,7 +970,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\bgroup\\s+\\bby\\s.{1,200}\\bhaving\\s.{1,50}(?:[!<]?=|=>?|[<>])",
+                "what": /\bgroup\s+\bby\s.{1,200}\bhaving\s.{1,50}(?:[!<]?=|=>?|[<>])/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -984,7 +984,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,10}\\border\\s+by\\s+\\d",
+                "what": /^.{0,10}\border\s+by\s+\d/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -998,7 +998,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,10}\\band\\s+extractvalue\\s+\\w",
+                "what": /^.{0,10}\band\s+extractvalue\s+\w/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -1012,7 +1012,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\bbenchmark\\s+\\d{5,10}\\s+[a-z]{2}",
+                "what": /\bbenchmark\s+\d{5,10}\s+[a-z]{2}/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -1026,7 +1026,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\bfloor\\s+rand\\s+(?:\\d+\\s*)?\\*\\s*\\d+",
+                "what": /\bfloor\s+rand\s+(?:\d+\s*)?\*\s*\d+/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -1040,7 +1040,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "\\bcase\\b.+?\\bwhen\\b.+?\\bthen\\b",
+                "what": /\bcase\b.+?\bwhen\b.+?\bthen\b/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -1054,26 +1054,26 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,100}\\ssleep\\s\\d+",
+                "what": /^.{0,100}\ssleep\s\d+/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
             }
         }
     },
-    /*"286": {
+    "286": {
         "why": "SQL injection",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i)\\d\\s+procedure\\s+analyse\\b",
+                "what": /\d\s+procedure\s+analyse\b/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "300": {
         "why": "Leading quote",
         "level": 2,
@@ -1081,25 +1081,25 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET",
-                "what": "^'",
+                "what": /^'/,
                 "operator": 5,
                 "normalize": 1
             }
         }
     },
-    /*"301": {
+    "301": {
         "why": "Potential reflected file download attempt",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "REQUEST_URI",
-                "what": "(?i)^[^?]*\\.(?:bat|cmd)(?:\\W|$)",
+                "what": /^[^?]*\.(?:bat|cmd)(?:\W|$)/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "302": {
         "why": "PHP variable",
         "level": 2,
@@ -1107,7 +1107,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "QUERY_STRING|PATH_INFO",
-                "what": "\\bHTTP_RAW_POST_DATA|HTTP_(?:POS|GE)T_VARS\\b",
+                "what": /\bHTTP_RAW_POST_DATA|HTTP_(?:POS|GE)T_VARS\b/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1120,7 +1120,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "phpinfo.php",
+                "what": /phpinfo.php/,
                 "operator": 4
             }
         }
@@ -1132,7 +1132,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "HTTP_HOST",
-                "what": "[^-a-zA-Z0-9._:\\[\\]]",
+                "what": /[^-a-zA-Z0-9._:\[\]]/,
                 "operator": 5
             }
         }
@@ -1144,7 +1144,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "\\.ph(?:p[345]?|t|tml)\\..+?",
+                "what": /\.ph(?:p[345]?|t|tml)\..+?/,
                 "operator": 5
             }
         }
