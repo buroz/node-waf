@@ -1,8 +1,9 @@
+// testfile for testing some things
 const rules = require('./rules');
 const attack_string = 'localHost';
 
 console.time("RegEx test");
-for (let rule in rules) {
+for (const rule in rules) {
 	// @todo: testing, testing, testing
 	const current_rule = rules[rule];
 	if(
