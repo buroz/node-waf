@@ -484,7 +484,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST",
-                "what": /\x0A\b((?:reply-)?to|b?cc|content-[td]\w)\b\s*:.*?\@/i,
+                "what": /\x0A\b(?:(?:reply-)?to|b?cc|content-[td]\w)\b\s*:.*?\@/i,
                 "operator": 5,
                 "normalize": 1,
                 "nocompress": 1
@@ -517,32 +517,32 @@ const rules = module.exports =
             }
         }
     },
-    /*"155": {
+    "155": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": "(?:<\\?(?![Xx][Mm][Ll]).*?(?:\\$_?(?:COOKIE|ENV|FILES|GLOBALS|(?:GE|POS|REQUES)T|SE(RVER|SSION))\\s*[=\\[)]|\\b(?i:array_map|assert|base64_(?:de|en)code|curl_exec|eval|(?:ex|im)plode|file(?:_get_contents)?|fsockopen|function_exists|gzinflate|move_uploaded_file|passthru|preg_replace|phpinfo|stripslashes|strrev|substr|system|(?:shell_)?exec)\\s*(?:\/\\*.+?\\*\/\\s*)?\\())|#!\/(?:usr|bin)\/.+?\\s|\\W\\$\\{\\s*['\"]\\w+['\"]",
+                "what": /(?:<\?(?![Xx][Mm][Ll]).*?(?:\$_?(?:COOKIE|ENV|FILES|GLOBALS|(?:GE|POS|REQUES)T|SE(RVER|SSION))\s*[=\[)]|\b(array_map|assert|base64_(?:de|en)code|curl_exec|eval|(?:ex|im)plode|file(?:_get_contents)?|fsockopen|function_exists|gzinflate|move_uploaded_file|passthru|preg_replace|phpinfo|stripslashes|strrev|substr|system|(?:shell_)?exec)\s*(?:\/\*.+?\*\/\s*)?\())|#!\/(?:usr|bin)\/.+?\s|\W\$\{\s*['\"]\w+['\"]/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"156": {
+    },
+    "156": {
         "why": "Code injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": "\\b(?i:eval)\\s*\\(\\s*(?i:base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\\s*\\(",
+                "what": /\b(eval)\s*\(\s*(base64_decode|exec|file_get_contents|gzinflate|passthru|shell_exec|stripslashes|system)\s*\(/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "160": {
         "why": "Shellshock vulnerability (CVE-2014-6271)",
         "level": 3,
@@ -550,7 +550,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|SERVER",
-                "what": "^\\s*\\(\\s*\\)\\s*\\{",
+                "what": /^\s*\(\s*\)\s*\{/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -563,37 +563,37 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST",
-                "what": "^[-\\d';].+\\w.+(?:--[\\x00-\\x20\\x7f]*|#|\/\\*)$",
+                "what": /^[-\d';].+\w.+(?:--[\x00-\x20\x7f]*|#|\/\*)$/,
                 "operator": 5,
                 "normalize": 1,
                 "capture": 1
             },
             "2": {
-                "what": "(?i)(?:\\b|\\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\\s+(?:not\\s+)?null|limit|load(?:_file)?|order\\s+by|password|rename|r?like|select|sleep|substring|table|truncate|union|update|version)\\b",
+                "what": /(?:\b|\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\s+(?:not\s+)?null|limit|load(?:_file)?|order\s+by|password|rename|r?like|select|sleep|substring|table|truncate|union|update|version)\b/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
     },
-    /*"251": {
+    "251": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i)(?:\\b|\\d)(?:ceil|concat|conv|floor|version)\\b",
+                "what": /(?:\b|\d)(?:ceil|concat|conv|floor|version)\b/i,
                 "operator": 5,
                 "normalize": 1,
                 "capture": 1
             },
             "2": {
-                "what": "(?i)(?:\\b|\\d)(?:pi\\s*\\(.*?\\).+?){3}",
+                "what": /(?:\b|\d)(?:pi\s*\(.*?\).+?){3}/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "252": {
         "why": "SQL injection",
         "level": 3,
@@ -601,31 +601,31 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?:\/\\*.*?\\*\/.+){2}",
+                "what": /(?:\/\*.*?\*\/.+){2}/,
                 "operator": 5,
                 "normalize": 1,
                 "capture": 1
             },
             "2": {
-                "what": "(?i)(?:\\b|\\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\\s+(?:not\\s+)?null|limit|load(?:_file)?|order\\s+by|password|rename|r?like|select|sleep|substring|table|truncate|union|update|version)\\b",
+                "what": /(?:\b|\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\s+(?:not\s+)?null|limit|load(?:_file)?|order\s+by|password|rename|r?like|select|sleep|substring|table|truncate|union|update|version)\b/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
     },
-    /*"253": {
+    "253": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE",
-                "what": "^(?i:admin(?:istrator)?)['\"].*?(?:--|#|\/\\*)",
+                "what": /^(?:admin(?:istrator)?)['\"].*?(?:--|#|\/\*)/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     /*"254": {
         "why": "SQL injection",
         "level": 3,
