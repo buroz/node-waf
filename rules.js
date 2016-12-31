@@ -720,7 +720,7 @@ const rules = module.exports =
         "enable": 1,
         "chain": {
             "1": {
-                "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
+                "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT|REQUEST_URI",
                 "what": "(?:\\b(?:null|and|or)\\b|\\|\\||&&)\\s*.{0,50}\\bselect\\b.",
                 "operator": 5,
                 "normalize": 1,
@@ -1255,7 +1255,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SERVER:HTTP_REFERER",
-                "what": "^https?:\/\/(?:www\\.)?(?:100dollars-seo\\.com|12-volt\\.su|1-99seo\\.com|4webmasters\\.org|7zap\\.com|9binaryoptions\\.com|adviceforum\\.info|bestbowling\\.ru|best-seo-(?:offer|report|solution)\\.com|blackhatworth\\.com|brianjeanmp\\.net|buttons-for-(?:your-)website\\.com|carmods\\.ru|chimiver\\.info|cumgoblin\\.com|dedicatesales\\.com|darodar\\.com|descargar-musica-gratis\\.net|doska-vsem\\.ru|downloadsphotoshop\\.com|econom\\.co|energy-ua\\.com|event-tracking\\.com|fbdownloader\\.com|fishingwiki\\.ru|f(?:loating|ree)-share-buttons\\.com|feel-planet\\.com|forex-broker-invest\\.ru|golden-praga\\.ru|goldishop\\.ru|hvd-store\\.com|hulfingtonpost\\.com|iloveitaly.(?:com?|ru)|intl-alliance\\.com|israprofi\\.co\\.il|itsm-kazan\\.ru|iphone-ipad-mac\\.xyz|julia(?:diets\\.com|world\\.net)|(?:archiv|li[vb]|new|doc|book)[-s]{0,2}(?:book|lib|new|doc|liv|top)s?a\\.top\/|[^.]+\\.(?:1supply|brocker|combomax|equipments|examine|globallight|godirect|maxlight|mindcorp|thewarehouse)\\.pw|lifecorp\\.me|lock-omsk\\.ru|kambasoft\\.com|kinoix\\.net|kinzeco\\.ru|krasper\\.ru|ksu-roholeva\\.com|make-money-online\\.|masserect\\.com|mccpharmacy\\.com|mebel-alait\\.ru|modjocams\\.com|minyetki\\.ru|nardulan\\.com|nudepatch\\.net|openstreetmap\\.org|pizza-tycoon\\.com|poisk-zakona\\.ru|prahaprint\\.cz|priceg\\.com|proekt-gaz\\.ru|prolifepowerup\\.com|rankalexa\\.net|rankings-analytics\\.com|russ-tractor\\.ru|savetubevideo\\.com|semalt(?:media)?\\.com|sexytrend.ru|sfd-chess\\.ru|silverdaledentistry\\.com|sparkle\\.city|srecorder\\.co|success-seo\\.com|subwarez\\.net|tatspecodejda\\.ru|thefinery\\.ru|timer4web\\.com|[^.]+\\.tracland\\.ru|valegames\\.com|videos-for-your-business\\.com|video--production\\.com|video-hollywood\\.ru|videohd\\.ws|vskidku\\.ru|vskrytiezamkov55\\.ru|[^.]+\\.y0\\.pl|webmonetizer\\.net)",
+                "what": "^https?://(?:www\.)?(?:100dollars-seo\.com|12-volt\.su|1-99seo\.com|4webmasters\.org|7zap\.com|9binaryoptions\.com|999\.md|adviceforum\.info|bestbowling\.ru|best-seo-(?:offer|report|solution)\.com|blackhatworth\.com|brianjeanmp\.net|buttons-for-(?:your-)website\.com|carmods\.ru|chimiver\.info|cumgoblin\.com|dedicatesales\.com|[^.]+\.dental-kazan\.ru|darodar\.com|descargar-musica-gratis\.net|dgeneriki\.ru|doska-vsem\.ru|downloadsphotoshop\.com|econom\.co|energy-ua\.com|event-tracking\.com|fbdownloader\.com|fishingwiki\.ru|f(?:loating|ree)-share-buttons\.com|feel-planet\.com|forex-broker-invest\.ru|golden-praga\.ru|goldishop\.ru|hvd-store\.com|hot-essay\.com|hulfingtonpost\.com|iloveitaly.(?:com?|ru)|intl-alliance\.com|israprofi\.co\.il|itsm-kazan\.ru|iphone-ipad-mac\.xyz|julia(?:diets\.com|world\.net)|(?:archiv|li[vb]|new|doc|book)[-s]{0,2}(?:book|lib|new|doc|liv|top)s?a\.top/|[^.]+\.(?:1supply|brocker|combomax|equipments|examine|globallight|godirect|maxlight|mindcorp|thewarehouse)\.pw|lifecorp\.me|lock-omsk\.ru|kambasoft\.com|kinoix\.net|kinzeco\.ru|krasper\.ru|ksu-roholeva\.com|make-money-online\.|masserect\.com|mccpharmacy\.com|mebel-alait\.ru|modjocams\.com|minyetki\.ru|nardulan\.com|nudepatch\.net|openstreetmap\.org|ok\.ru|pizza-tycoon\.com|poisk-zakona\.ru|prahaprint\.cz|priceg\.com|proekt-gaz\.ru|prolifepowerup\.com|[^.]+\.proxy\d\.pro|rankalexa\.net|rankings-analytics\.com|rent\.com\.md|russ-tractor\.ru|savetubevideo\.com|semalt(?:media)?\.com|sexytrend.ru|sfd-chess\.ru|silverdaledentistry\.com|socialmediascanner\.eset\.com|sparkle\.city|srecorder\.co|success-seo\.com|subwarez\.net|tatspecodejda\.ru|tsgnb\.ru|thefinery\.ru|timer4web\.com|[^.]+\.tracland\.ru|valegames\.com|videos-for-your-business\.com|video--production\.com|video-hollywood\.ru|videohd\.ws|vskidku\.ru|vskrytiezamkov55\.ru|[^.]+\.[cy]0\.pl|webmonetizer\.net|[^.]+\.webnode\.fr)",
                 "operator": 5
             }
         }
@@ -1838,6 +1838,18 @@ const rules = module.exports =
                 "where": "REQUEST:task",
                 "what": "user.register",
                 "operator": 1
+            }
+        }
+    },
+	"1016": {
+        "why": "PHPMailer < 5.2.20 arbitrary file upload (CVE-2016-10033)",
+        "level": 3,
+        "enable": 1,
+        "chain": {
+            "1": {
+                "where": "POST:email",
+                "what": "-X/",
+                "operator": 3
             }
         }
     },
