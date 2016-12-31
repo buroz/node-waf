@@ -87,7 +87,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": /^(?:https?|ftp):\/\/.+\/[^&\/]+\\?$/i,
+                "what": /^(?:https?|ftp):\/\/.+\/[^&\/]+\?$/i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -113,7 +113,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT",
-                "what": /^(?:ftp):\/\/(?:.+?:.+?\\@)?[^\/]+\/./i,
+                "what": /^(?:ftp):\/\/(?:.+?:.+?\@)?[^\/]+\/./i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -817,7 +817,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\\b|\|\||&&).{0,20})?\bcreate\s+(?:(?:database|schema|(?:temporary\s+)?table)\s+(?:if\s+not\s+exists\b)?.{1,70}|user\s+.{1,38}@.{1,38}\s+identified\s+by\s+)/,
+                "what": /^.{0,30}(?:(?:\b(?:and|or|union)\b|\|\||&&).{0,20})?\bcreate\s+(?:(?:database|schema|(?:temporary\s+)?table)\s+(?:if\s+not\s+exists\b)?.{1,70}|user\s+.{1,38}@.{1,38}\s+identified\s+by\s+)/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -1149,18 +1149,18 @@ const rules = module.exports =
             }
         }
     },
-    /*"306": {
+    "306": {
         "why": "Bogus user-agent signature",
         "level": 1,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "SERVER:HTTP_USER_AGENT",
-                "what": "\\b(?:compatible; MSIE [1-6]|(?i)Mozilla\/[0-3])\\.\\d",
+                "what": /\b(?:compatible; MSIE [1-6]|Mozilla\/[0-3])\.\d/i,
                 "operator": 5
             }
         }
-    },*/
+    },
     "307": {
         "why": "Excessive user-agent string length (300+ characters)",
         "level": 2,
@@ -1168,7 +1168,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "HTTP_USER_AGENT",
-                "what": "^.{300}",
+                "what": /^.{300}/,
                 "operator": 5
             }
         }
@@ -1180,7 +1180,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "[\\xaf\\xbf]\\x27",
+                "what": /[\xaf\xbf]\x27/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1193,36 +1193,36 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "QUERY_STRING|PATH_INFO|COOKIE|SERVER:HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "\\b(?:\\$?_(COOKIE|ENV|FILES|(?:GE|POS|REQUES)T|SE(RVER|SSION))|HTTP_(?:(?:POST|GET)_VARS|RAW_POST_DATA)|GLOBALS)\\s*[=\\[)]|\\W\\$\\{\\s*['\"]\\w+['\"]",
+                "what": /\b(?:\$?_(COOKIE|ENV|FILES|(?:GE|POS|REQUES)T|SE(RVER|SSION))|HTTP_(?:(?:POST|GET)_VARS|RAW_POST_DATA)|GLOBALS)\s*[=\[)]|\W\$\{\s*['\"]\w+['\"]/,
                 "operator": 5,
                 "normalize": 1
             }
         }
     },
-    /*"310": {
+    "310": {
         "why": "Access to a configuration file",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME|GET",
-                "what": "\\b(?i:(?:conf(?:ig(?:ur(?:e|ation)|\\.inc|_global)?)?)|settings?(?:\\.?inc)?)\\.php$",
+                "what": /\b(?:(?:conf(?:ig(?:ur(?:e|ation)|\.inc|_global)?)?)|settings?(?:\.?inc)?)\.php$/i,
                 "operator": 5
             }
         }
-    },*/
-    /*"311": {
+    },
+    "311": {
         "why": "Large set of Hex characters",
         "level": 2,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST",
-                "what": "(?i:\\\\x[a-f0-9]{2}){25}",
+                "what": /(?:\\\\x[a-f0-9]{2}){25}/i,
                 "operator": 5
             }
         }
-    },*/
+    },
     "312": {
         "why": "Non-compliant IP found in HTTP headers",
         "level": 1,
@@ -1230,7 +1230,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "HTTP_X_FORWARDED_FOR|HTTP_CF_CONNECTING_IP|HTTP_CLIENT_IP|HTTP_FORWARDED_FOR|HTTP_INCAP_CLIENT_IP|HTTP_X_CLUSTER_CLIENT_IP|HTTP_X_FORWARDED|HTTP_X_REAL_IP",
-                "what": "[^.0-9a-fA-F:\\x20,unkow]",
+                "what": /[^.0-9a-fA-F:\x20,unkow]/,
                 "operator": 5
             }
         }
@@ -1242,7 +1242,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "QUERY_STRING",
-                "what": "^-[bcndfiswzT].{20}",
+                "what": /^-[bcndfiswzT].{20}/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1255,7 +1255,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SERVER:HTTP_REFERER",
-                "what": "^https?://(?:www\.)?(?:100dollars-seo\.com|12-volt\.su|1-99seo\.com|4webmasters\.org|7zap\.com|9binaryoptions\.com|999\.md|adviceforum\.info|bestbowling\.ru|best-seo-(?:offer|report|solution)\.com|blackhatworth\.com|brianjeanmp\.net|buttons-for-(?:your-)website\.com|carmods\.ru|chimiver\.info|cumgoblin\.com|dedicatesales\.com|[^.]+\.dental-kazan\.ru|darodar\.com|descargar-musica-gratis\.net|dgeneriki\.ru|doska-vsem\.ru|downloadsphotoshop\.com|econom\.co|energy-ua\.com|event-tracking\.com|fbdownloader\.com|fishingwiki\.ru|f(?:loating|ree)-share-buttons\.com|feel-planet\.com|forex-broker-invest\.ru|golden-praga\.ru|goldishop\.ru|hvd-store\.com|hot-essay\.com|hulfingtonpost\.com|iloveitaly.(?:com?|ru)|intl-alliance\.com|israprofi\.co\.il|itsm-kazan\.ru|iphone-ipad-mac\.xyz|julia(?:diets\.com|world\.net)|(?:archiv|li[vb]|new|doc|book)[-s]{0,2}(?:book|lib|new|doc|liv|top)s?a\.top/|[^.]+\.(?:1supply|brocker|combomax|equipments|examine|globallight|godirect|maxlight|mindcorp|thewarehouse)\.pw|lifecorp\.me|lock-omsk\.ru|kambasoft\.com|kinoix\.net|kinzeco\.ru|krasper\.ru|ksu-roholeva\.com|make-money-online\.|masserect\.com|mccpharmacy\.com|mebel-alait\.ru|modjocams\.com|minyetki\.ru|nardulan\.com|nudepatch\.net|openstreetmap\.org|ok\.ru|pizza-tycoon\.com|poisk-zakona\.ru|prahaprint\.cz|priceg\.com|proekt-gaz\.ru|prolifepowerup\.com|[^.]+\.proxy\d\.pro|rankalexa\.net|rankings-analytics\.com|rent\.com\.md|russ-tractor\.ru|savetubevideo\.com|semalt(?:media)?\.com|sexytrend.ru|sfd-chess\.ru|silverdaledentistry\.com|socialmediascanner\.eset\.com|sparkle\.city|srecorder\.co|success-seo\.com|subwarez\.net|tatspecodejda\.ru|tsgnb\.ru|thefinery\.ru|timer4web\.com|[^.]+\.tracland\.ru|valegames\.com|videos-for-your-business\.com|video--production\.com|video-hollywood\.ru|videohd\.ws|vskidku\.ru|vskrytiezamkov55\.ru|[^.]+\.[cy]0\.pl|webmonetizer\.net|[^.]+\.webnode\.fr)",
+                "what": /https?:\/\/(?:www\.)?(?:100dollars-seo\.com|12-volt\.su|1-99seo\.com|4webmasters\.org|7zap\.com|9binaryoptions\.com|999\.md|adviceforum\.info|bestbowling\.ru|best-seo-(?:offer|report|solution)\.com|blackhatworth\.com|brianjeanmp\.net|buttons-for-(?:your-)website\.com|carmods\.ru|chimiver\.info|cumgoblin\.com|dedicatesales\.com|[^.]+\.dental-kazan\.ru|darodar\.com|descargar-musica-gratis\.net|dgeneriki\.ru|doska-vsem\.ru|downloadsphotoshop\.com|econom\.co|energy-ua\.com|event-tracking\.com|fbdownloader\.com|fishingwiki\.ru|f(?:loating|ree)-share-buttons\.com|feel-planet\.com|forex-broker-invest\.ru|golden-praga\.ru|goldishop\.ru|hvd-store\.com|hot-essay\.com|hulfingtonpost\.com|iloveitaly.(?:com?|ru)|intl-alliance\.com|israprofi\.co\.il|itsm-kazan\.ru|iphone-ipad-mac\.xyz|julia(?:diets\.com|world\.net)|(?:archiv|li[vb]|new|doc|book)[-s]{0,2}(?:book|lib|new|doc|liv|top)s?a\.top\/|[^.]+\.(?:1supply|brocker|combomax|equipments|examine|globallight|godirect|maxlight|mindcorp|thewarehouse)\.pw|lifecorp\.me|lock-omsk\.ru|kambasoft\.com|kinoix\.net|kinzeco\.ru|krasper\.ru|ksu-roholeva\.com|make-money-online\.|masserect\.com|mccpharmacy\.com|mebel-alait\.ru|modjocams\.com|minyetki\.ru|nardulan\.com|nudepatch\.net|openstreetmap\.org|ok\.ru|pizza-tycoon\.com|poisk-zakona\.ru|prahaprint\.cz|priceg\.com|proekt-gaz\.ru|prolifepowerup\.com|[^.]+\.proxy\d\.pro|rankalexa\.net|rankings-analytics\.com|rent\.com\.md|russ-tractor\.ru|savetubevideo\.com|semalt(?:media)?\.com|sexytrend\.ru|sfd-chess\.ru|silverdaledentistry\.com|socialmediascanner\.eset\.com|sparkle\.city|srecorder\.co|success-seo\.com|subwarez\.net|tatspecodejda\.ru|tsgnb\.ru|thefinery\.ru|timer4web\.com|[^.]+\.tracland\.ru|valegames\.com|videos-for-your-business\.com|video--production\.com|video-hollywood\.ru|videohd\.ws|vskidku\.ru|vskrytiezamkov55\.ru|[^.]+\.[cy]0\.pl|webmonetizer\.net|[^.]+\.webnode\.fr)/,
                 "operator": 5
             }
         }
