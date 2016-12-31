@@ -360,7 +360,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET",
-                "what": /\xBC\/script\xBE/,
+                "what": "\xBC/script\xBE",
                 "operator": 3,
                 "normalize": 1
             }
@@ -761,7 +761,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": /union all select/,
+                "what": "union all select",
                 "operator": 3,
                 "normalize": 1,
                 "transform": 1
@@ -775,7 +775,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": /select concat/,
+                "what": "select concat",
                 "operator": 3,
                 "normalize": 1,
                 "transform": 1
@@ -1120,7 +1120,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": /phpinfo.php/,
+                "what": "phpinfo.php",
                 "operator": 4
             }
         }
@@ -1310,50 +1310,50 @@ const rules = module.exports =
             }
         }
     },
-    /*"319": {
+    "319": {
         "why": "Obfuscated data",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i)concat|select|database|insert|update|union|table",
+                "what": "/concat|select|database|insert|update|union|table/i",
                 "operator": 5,
                 "normalize": 1,
                 "capture": 1
             },
             "2": {
-                "what": "\\bchar\\b\\s(?:\\d{1,3}\\s){3}|(?:\\bchar\\b\\s\\d{1,3}\\s(?:\\|\\||or|&&|and)?\\s?){3}",
+                "what": /\bchar\b\s(?:\d{1,3}\s){3}|(?:\bchar\b\s\d{1,3}\s(?:\|\||or|&&|and)?\s?){3}/,
                 "operator": 5,
                 "transform": 1,
                 "normalize": 1
             }
         }
-    },*/
-    /*"320": {
+    },
+    "320": {
         "why": "Obfuscated data",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "(?i:\\\\x[a-f0-9]{2}){4}",
+                "what": /(?:\\x[a-f0-9]{2}){4}/,
                 "operator": 5
             }
         }
-    },*/
-    /*"350": {
+    },
+    "350": {
         "why": "Shell\/backdoor",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "(?i:bypass|c99(?:madShell|ud)?|c100|cookie_(?:usage|setup)|diagnostics|dump|endix|gifimg|goog[l1]e.+[\\da-f]{10}|imageth|imlog|r5[47]|safe0ver|sniper|(?:jpe?g|gif|png))\\.ph(?:p[345]?|t|tml)",
+                "what": /(?:bypass|c99(?:madShell|ud)?|c100|cookie_(?:usage|setup)|diagnostics|dump|endix|gifimg|goog[l1]e.+[\da-f]{10}|imageth|imlog|r5[47]|safe0ver|sniper|(?:jpe?g|gif|png))\.ph(?:p[345]?|t|tml)/i,
                 "operator": 5
             }
         }
-    },*/
+    },
     "351": {
         "why": "Shell\/backdoor",
         "level": 3,
@@ -1373,7 +1373,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "QUERY_STRING",
-                "what": "\\bact=img&img=\\w",
+                "what": /\bact=img&img=\w/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1386,7 +1386,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "QUERY_STRING",
-                "what": "\\bc=img&name=\\w",
+                "what": /\bc=img&name=\w/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1399,7 +1399,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "QUERY_STRING",
-                "what": "^image=(?:arrow|file|folder|smiley)$",
+                "what": /^image=(?:arrow|file|folder|smiley)$/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1412,7 +1412,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "COOKIE",
-                "what": "\\buname=.+?;\\ssysctl=",
+                "what": /\buname=.+?;\ssysctl=/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1474,7 +1474,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "POST:a",
-                "what": "^(?:Bruteforce|Console|Files(?:Man|Tools)|Network|Php|SecInfo|SelfRemove|Sql|StringTools)$",
+                "what": /^(?:Bruteforce|Console|Files(?:Man|Tools)|Network|Php|SecInfo|SelfRemove|Sql|StringTools)$/,
                 "operator": 5
             }
         }
@@ -1498,7 +1498,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "POST:cmd",
-                "what": "^(?:c(?:h_|URL)|db_query|echo\\s\\\\.*|(?:edit|download|save)_file|find(?:_text|\\s.+)|ftp_(?:brute|file_(?:down|up))|mail_file|mk|mysql(?:b|_dump)|php_eval|ps\\s.*|search_text|safe_dir|sym[1-2]|test[1-8]|zend)$",
+                "what": /^(?:c(?:h_|URL)|db_query|echo\s\\.*|(?:edit|download|save)_file|find(?:_text|\s.+)|ftp_(?:brute|file_(?:down|up))|mail_file|mk|mysql(?:b|_dump)|php_eval|ps\s.*|search_text|safe_dir|sym[1-2]|test[1-8]|zend)$/,
                 "operator": 5
             }
         }
@@ -1510,7 +1510,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET:p",
-                "what": "^(?:chmod|cmd|edit|eval|delete|headers|md5|mysql|phpinfo|rename)$",
+                "what": /^(?:chmod|cmd|edit|eval|delete|headers|md5|mysql|phpinfo|rename)$/,
                 "operator": 5
             }
         }
@@ -1522,7 +1522,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "QUERY_STRING",
-                "what": "^act=(?:bind|cmd|encoder|eval|feedback|ftpquickbrute|gofile|ls|mkdir|mkfile|processes|ps_aux|search|security|sql|tools|update|upload)&d=\/",
+                "what": /^act=(?:bind|cmd|encoder|eval|feedback|ftpquickbrute|gofile|ls|mkdir|mkfile|processes|ps_aux|search|security|sql|tools|update|upload)&d=\//,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1552,7 +1552,7 @@ const rules = module.exports =
             },
             "2": {
                 "where": "POST:contenttype",
-                "what": "(?:plain|html)",
+                "what": /(?:plain|html)/,
                 "operator": 5
             }
         }
@@ -1564,7 +1564,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "[\\x01-\\x08\\x0e-\\x1f]",
+                "what": /[\x01-\x08\x0e-\x1f]/,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1577,26 +1577,26 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|REQUEST_URI",
-                "what": "\/nothingyet",
+                "what": /\/nothingyet/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 3
             }
         }
     },
-    /*"520": {
+    "520": {
         "why": "Data URI scheme or PHP built-in wrappers",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|SERVER:HTTP_USER_AGENT|SERVER:HTTP_REFERER",
-                "what": "\\b(?i:ph(p|ar):\/\/[a-z].+?|data:.*?;\\s*base64.*?,)",
+                "what": /\b(?:ph(p|ar):\/\/[a-z].+?|data:.*?;\s*base64.*?,)/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "531": {
         "why": "Suspicious bots/scanners",
         "level": 1,
@@ -1635,7 +1635,7 @@ const rules = module.exports =
             },
             "2": {
                 "where": "RAW",
-                "what": "name\\s*\\[.+?(?i:select|update|insert|extract|concat|table|limit).+?\\]=",
+                "what": /name\s*\[.+?(?:select|update|insert|extract|concat|table|limit).+?\]=/i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -1678,7 +1678,7 @@ const rules = module.exports =
             },
             "2": {
                 "where": "POST:avatarurl",
-                "what": "\\s",
+                "what": "\s",
                 "operator": 5,
                 "normalize": 1
             }
@@ -1727,7 +1727,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "\/scripts\/(?:setup|signon)\\.php",
+                "what": /\/scripts\/(?:setup|signon)\.php/,
                 "operator": 5
             }
         }
@@ -1739,7 +1739,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "\/tiny_?mce\/plugins\/spellchecker\/classes\/",
+                "what": /\/tiny_?mce\/plugins\/spellchecker\/classes\//,
                 "operator": 5
             }
         }
@@ -1777,7 +1777,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "\/uploadify.php",
+                "what": "/uploadify.php",
                 "operator": 3
             }
         }
@@ -1802,12 +1802,12 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "REQUEST_URI",
-                "what": "\/set-payment-information",
+                "what": "/set-payment-information",
                 "operator": 3
             },
             "2": {
                 "where": "RAW",
-                "what": "beforeCommitCallbacks.{10,50}\\bphpinfo\\b|(?:stat_file_name|components).{5,100}<\\?",
+                "what": /beforeCommitCallbacks.{10,50}\bphpinfo\b|(?:stat_file_name|components).{5,100}<\?/,
                 "operator": 5
             }
         }
@@ -1819,12 +1819,12 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "SCRIPT_NAME",
-                "what": "(?:thumb|img)\\.php",
+                "what": /(?:thumb|img)\.php/,
                 "operator": 5
             },
             "2": {
                 "where": "GET:src",
-                "what": "\\.(?:png|gif|jpe?g|jf?if|svg)$",
+                "what": /\.(?:png|gif|jpe?g|jf?if|svg)$/,
                 "operator": 6
             }
         }
