@@ -626,33 +626,33 @@ const rules = module.exports =
             }
         }
     },
-    /*"254": {
+    "254": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST",
-                "what": "(?i)\\b[-\\w]+@(?:[-a-z0-9]+\\.)+[a-z]{2,8}'.{0,20}[^a-z](?:\\band\\b|&&).{0,20}=[\\s\/*]*'",
+                "what": /\b[-\w]+@(?:[-a-z0-9]+\.)+[a-z]{2,8}'.{0,20}[^a-z](?:\band\b|&&).{0,20}=[\s\/*]*'/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
-    /*"256": {
+    },
+    "256": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "(?:\\band\\b|\\bor\\b|\\bhaving\\b|&&|\\|\\|)\\s*(?:\\d+\\s*)+(?:[!<]?=|=>?|[<>]|(?:not\\s+)?like)(?:\\s*\\d)+",
+                "what": /(?:\band\b|\bor\b|\bhaving\b|&&|\|\|)\s*(?:\d+\s*)+(?:[!<]?=|=>?|[<>]|(?:not\s+)?like)(?:\s*\d)+/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
             }
         }
-    },*/
+    },
     "257": {
         "why": "SQL injection",
         "level": 2,
@@ -660,7 +660,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_USER_AGENT|HTTP_REFERER",
-                "what": "(?:\\band\\b|\\bor\\b|\\bhaving\\b|&&|\\|\\|).{0,250}\\b(\\w+)\\b\\s*(?:[!<]?=|=>?|[<>]|(?:not\\s+)?like)\\s*\\1\\b",
+                "what": /(?:\band\b|\bor\b|\bhaving\b|&&|\|\|).{0,250}\b(\w+)\b\s*(?:[!<]?=|=>?|[<>]|(?:not\s+)?like)\s*\1\b/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -674,32 +674,32 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|POST|SERVER",
-                "what": ".{5}\\bfrom\\b.{1,30}\\b(?:information|performance)_schema\\b\\s*\\.\\s*\\w",
+                "what": /.{5}\bfrom\b.{1,30}\b(?:information|performance)_schema\b\s*\.\s*\w/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
             }
         }
     },
-    /*"259": {
+    "259": {
         "why": "SQL injection",
         "level": 3,
         "enable": 1,
         "chain": {
             "1": {
                 "where": "GET|POST|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^-?\\d+.{0,30}(?:\\band\\b.{0,30})?\\b(?i:union|select)\\b",
+                "what": /^-?\d+.{0,30}(?:\band\b.{0,30})?\b(?:union|select)\b/i,
                 "operator": 5,
                 "normalize": 1,
                 "capture": 1
             },
             "2": {
-                "what": "(?i)(?:\\b|\\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\\s+(?:not\\s+)?null|limit|load(?:_file)?|order\\s+by|password|rename|r?like|sleep|substring|table|truncate|update|version)\\b",
+                "what": /(?:\b|\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\s+(?:not\s+)?null|limit|load(?:_file)?|order\s+by|password|rename|r?like|sleep|substring|table|truncate|update|version)\b/i,
                 "operator": 5,
                 "normalize": 1
             }
         }
-    },*/
+    },
     "260": {
         "why": "SQL injection",
         "level": 3,
@@ -707,7 +707,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^(?:\\b(?:null|and|or)\\b|\\|\\||&&)?\\s*union\\s+(?:all\\s+)?select\\b",
+                "what": /^(?:\b(?:null|and|or)\b|\|\||&&)?\s*union\s+(?:all\s+)?select\b/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
@@ -721,14 +721,14 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT|REQUEST_URI",
-                "what": "(?:\\b(?:null|and|or)\\b|\\|\\||&&)\\s*.{0,50}\\bselect\\b.",
+                "what": /(?:\b(?:null|and|or)\b|\|\||&&)\s*.{0,50}\bselect\b./,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1,
                 "capture": 1
             },
             "2": {
-                "what": "(?i)(?:\\b|\\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\\s+(?:not\\s+)?null|limit|load(?:_file)?|order\\s+by|password|rename|r?like|sleep|substring|table|truncate|union|update|version)\\b",
+                "what": /(?:\b|\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\s+(?:not\s+)?null|limit|load(?:_file)?|order\s+by|password|rename|r?like|sleep|substring|table|truncate|union|update|version)\b/i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -741,14 +741,14 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "^.{0,10}\\bselect\\b\\s.{1,150}\\bfrom\\b.",
+                "what": /^.{0,10}\bselect\b\s.{1,150}\bfrom\b./,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1,
                 "capture": 1
             },
             "2": {
-                "what": "(?i)(?:\\b|\\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\\s+(?:not\\s+)?null|limit|load(?:_file)?|order\\s+by|password|rename|r?like|sleep|substring|table|truncate|union|update|version|where)\\b",
+                "what": /(?:\b|\d)(?:alter|(?:group_)?concat(?:_ws)?|benchmark|create|database|delete|drop|(?:dump|out)file|extractvalue|grant|insert|is\s+(?:not\s+)?null|limit|load(?:_file)?|order\s+by|password|rename|r?like|sleep|substring|table|truncate|union|update|version|where)\b/i,
                 "operator": 5,
                 "normalize": 1
             }
@@ -761,7 +761,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "union all select",
+                "what": /union all select/,
                 "operator": 3,
                 "normalize": 1,
                 "transform": 1
@@ -775,7 +775,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "GET|COOKIE|HTTP_REFERER|HTTP_USER_AGENT",
-                "what": "select concat",
+                "what": /select concat/,
                 "operator": 3,
                 "normalize": 1,
                 "transform": 1
@@ -789,7 +789,7 @@ const rules = module.exports =
         "chain": {
             "1": {
                 "where": "POST",
-                "what": "^.{0,15}\\bunion\\s+select\\b.{1,100}(from|where)\\b",
+                "what": /^.{0,15}\bunion\s+select\b.{1,100}(from|where)\b/,
                 "operator": 5,
                 "normalize": 1,
                 "transform": 1
