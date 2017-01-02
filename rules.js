@@ -70,7 +70,8 @@ const rules = module.exports =
         where: "GET|COOKIE|SERVER:HTTP_USER_AGENT",
         what: "\\b(?:include|require)(?:_once)?\\s*.{0,10}\\s*sys_get_temp_dir\\b",
         what_flags: "i",
-        operator: 5
+        operator: 5,
+        normalize: true
       }
     ]
   },
@@ -84,7 +85,8 @@ const rules = module.exports =
         where: "COOKIE:id",
         what: "\\b(?:eval)\\s*\\(",
         what_flags: "i",
-        operator: 5
+        operator: 5,
+        normalize: true
       }
     ]
   },
@@ -1275,7 +1277,8 @@ const rules = module.exports =
         where: "SERVER:HTTP_USER_AGENT",
         what: "\\b(?:compatible; MSIE [1-6]|Mozilla\/[0-3])\\.\\d",
         what_flags: "i",
-        operator: 5
+        operator: 5,
+        normalize: true
       }
     ]
   },
@@ -1330,7 +1333,8 @@ const rules = module.exports =
         where: "SCRIPT_NAME|GET",
         what: "\\b(?:(?:conf(?:ig(?:ur(?:e|ation)|\\.inc|_global)?)?)|settings?(?:\\.?inc)?)\\.php$",
         what_flags: "i",
-        operator: 5
+        operator: 5,
+        normalize: true
       }
     ]
   },
@@ -1344,7 +1348,8 @@ const rules = module.exports =
         where: "GET|POST",
         what: "(?:\\\\x[a-f0-9]{2}){25}",
         what_flags: "i",
-        operator: 5
+        operator: 5,
+        normalize: true
       }
     ]
   },
@@ -1488,7 +1493,8 @@ const rules = module.exports =
         where: "SCRIPT_NAME",
         what: "(?:bypass|c99(?:madShell|ud)?|c100|cookie_(?:usage|setup)|diagnostics|dump|endix|gifimg|goog[l1]e.+[\\da-f]{10}|imageth|imlog|r5[47]|safe0ver|sniper|(?:jpe?g|gif|png))\\.ph(?:p[345]?|t|tml)",
         what_flags: "i",
-        operator: 5
+        operator: 5,
+        normalize: true
       }
     ]
   },
