@@ -1,5 +1,59 @@
-const rules = module.exports = 
-[
+console.time("loadrules test");
+const rules = require('./rules');
+console.timeEnd("loadrules test");
+
+const avro = require('avsc');
+
+const type = avro.parse({
+  type : 'array',
+  items : {
+    type : 'record',
+    name : 'rules',
+    fields : [ {
+      name : 'id',
+      type : ['null', 'long'],
+	  default: null,
+    }, {
+      name : 'why',
+      type : ['null', 'string'],
+	  default: null,
+    }, {
+      name : 'level',
+      type : ['null', 'long'],
+	  default: null,
+    }, {
+      name : 'enable',
+      type : ['null', 'boolean'],
+	  default: null,
+    }, {
+      name : 'chain',
+      type : {
+        type : 'array',
+        items : {
+          type : 'record',
+          name : 'chain',
+          fields : [ {
+            name : 'where',
+            type : ['null', 'string'],
+			default: null,
+          },
+          {
+            name : 'what',
+            type : ['null', 'string'],
+			default: null,
+          },
+          {
+            name : 'operator',
+            type : ['null', 'long'],
+            default: null,
+          }]
+        }
+      },
+    } ]
+  }
+});
+
+const buf = type.toBuffer([
   {
     id:1,
     why: "Directory traversal",
@@ -89,14 +143,14 @@ const rules = module.exports =
     ]
   },
   {
-    id: 50,
+    id:50,
     why: "Remote file inclusion",
     level: 3,
     enable: true,
     chain: [
       {
         where: "GET|POST|COOKIE|HTTP_USER_AGENT",
-        what: "^(?:https?|ftp):\/\/.+\/[^&\/\\s]+\\?$",
+        what: "^(?:https?|ftp):\/\/.+\/[^&\/]+\\?$",
         what_flags: "i",
         operator: 5,
         normalize: true
@@ -104,7 +158,7 @@ const rules = module.exports =
     ]
   },
   {
-    id: 52,
+    id:52,
     why: "Remote file inclusion",
     level: 3,
     enable: true,
@@ -462,6 +516,7 @@ const rules = module.exports =
       {
         where: "GET",
         what: "\\b(?:document|window|this)\\s*\\[.+?\\]\\s*[\\[(]",
+        what_flags: "i",
         operator: 5,
         normalize: true,
         transform: 2
@@ -1259,7 +1314,7 @@ const rules = module.exports =
     chain: [
       {
         where: "SCRIPT_NAME",
-        what: "\\.ph(?:p[34x]|5\\d?)?|t(ml)?)\\..+?",
+        what: "\\.ph(?:p[345]?|t|tml)\\..+?",
         operator: 5
       }
     ]
@@ -1382,7 +1437,7 @@ const rules = module.exports =
     chain: [
       {
         where: "SERVER:HTTP_REFERER",
-        what: "^https?:\/\/(?:www\\.)?(?:100dollars-seo\\.com|12-volt\\.su|1-99seo\\.com|1cbit\\.net||4webmasters\\.org|7zap\\.com|9binaryoptions\\.com|999\\.md|adviceforum\\.info|bestbowling\\.ru|best-seo-(?:offer|report|solution)\\.com|blackhatworth\\.com|brianjeanmp\\.net|buttons-for-(?:your-)website\\.com|carmods\\.ru|chimiver\\.info|cumgoblin\\.com|dedicatesales\\.com|[^.]+\\.dental-kazan\\.ru|darodar\\.com|descargar-musica-gratis\\.net|dgeneriki\\.ru|doska-vsem\\.ru|downloadsphotoshop\\.com|econom\\.co|energy-ua\\.com|event-tracking\\.com|fbdownloader\\.com|fishingwiki\\.ru|f(?:loating|ree)-share-buttons\\.com|feel-planet\\.com|forex-broker-invest\\.ru|fun-bikes\\.ru|golden-praga\\.ru|goldishop\\.ru|hvd-store\\.com|hot-essay\\.com|hulfingtonpost\\.com|iloveitaly\\.(?:com?|ru)|intl-alliance\\.com|israprofi\\.co\\.il|itsm-kazan\\.ru|iphone-ipad-mac\\.xyz|julia(?:diets\\.com|world\\.net)|(?:archiv|li[vb]|new|doc|book)[-s]{0,2}(?:book|lib|new|doc|liv|top)s?a\\.top\/|[^.]+\\.(?:1supply|brocker|combomax|equipments|examine|globallight|godirect|maxlight|mindcorp|thewarehouse)\\.pw|lifecorp\\.me|lock-omsk\\.ru|kambasoft\\.com|kinoix\\.net|kinzeco\\.ru|krasper\\.ru|ksu-roholeva\\.com|make-money-online\\.|masserect\\.com|mccpharmacy\\.com|mebel-alait\\.ru|modjocams\\.com|minyetki\\.ru|nardulan\\.com|nudepatch\\.net|openstreetmap\\.org|ok\\.ru|pizza-tycoon\\.com|poisk-zakona\\.ru|prahaprint\\.cz|priceg\\.com|proekt-gaz\\.ru|prolifepowerup\\.com|[^.]+\\.proxy\\d\\.pro|rankalexa\\.net|rankings-analytics\\.com|rent\\.com\\.md|rikard\\.ru|russ-tractor\\.ru|sale-secure\\.com|savetubevideo\\.com|semalt(?:media)?\\.com|sexytrend\\.ru|sfd-chess\\.ru|silverdaledentistry\\.com|socialmediascanner\\.eset\\.com|sparkle\\.city|srecorder\\.co|success-seo\\.com|subwarez\\.net|tatspecodejda\\.ru|tsgnb\\.ru|thefinery\\.ru|timer4web\\.com|[^.]+\\.tracland\\.ru|valegames\\.com|videos-for-your-business\\.com|video--production\\.com|video-hollywood\\.ru|videohd\\.ws|vskidku\\.ru|vskrytiezamkov55\\.ru|[^.]+\\.[cy]0\\.pl|webmonetizer\\.net|[^.]+\\.webnode\\.fr)",
+        what: "^https?:\/\/(?:www\\.)?(?:100dollars-seo\\.com|12-volt\\.su|1-99seo\\.com|4webmasters\\.org|7zap\\.com|9binaryoptions\\.com|999\\.md|adviceforum\\.info|bestbowling\\.ru|best-seo-(?:offer|report|solution)\\.com|blackhatworth\\.com|brianjeanmp\\.net|buttons-for-(?:your-)website\\.com|carmods\\.ru|chimiver\\.info|cumgoblin\\.com|dedicatesales\\.com|[^.]+\\.dental-kazan\\.ru|darodar\\.com|descargar-musica-gratis\\.net|dgeneriki\\.ru|doska-vsem\\.ru|downloadsphotoshop\\.com|econom\\.co|energy-ua\\.com|event-tracking\\.com|fbdownloader\\.com|fishingwiki\\.ru|f(?:loating|ree)-share-buttons\\.com|feel-planet\\.com|forex-broker-invest\\.ru|golden-praga\\.ru|goldishop\\.ru|hvd-store\\.com|hot-essay\\.com|hulfingtonpost\\.com|iloveitaly\\.(?:com?|ru)|intl-alliance\\.com|israprofi\\.co\\.il|itsm-kazan\\.ru|iphone-ipad-mac\\.xyz|julia(?:diets\\.com|world\\.net)|(?:archiv|li[vb]|new|doc|book)[-s]{0,2}(?:book|lib|new|doc|liv|top)s?a\\.top\/|[^.]+\\.(?:1supply|brocker|combomax|equipments|examine|globallight|godirect|maxlight|mindcorp|thewarehouse)\\.pw|lifecorp\\.me|lock-omsk\\.ru|kambasoft\\.com|kinoix\\.net|kinzeco\\.ru|krasper\\.ru|ksu-roholeva\\.com|make-money-online\\.|masserect\\.com|mccpharmacy\\.com|mebel-alait\\.ru|modjocams\\.com|minyetki\\.ru|nardulan\\.com|nudepatch\\.net|openstreetmap\\.org|ok\\.ru|pizza-tycoon\\.com|poisk-zakona\\.ru|prahaprint\\.cz|priceg\\.com|proekt-gaz\\.ru|prolifepowerup\\.com|[^.]+\\.proxy\\d\\.pro|rankalexa\\.net|rankings-analytics\\.com|rent\\.com\\.md|russ-tractor\\.ru|savetubevideo\\.com|semalt(?:media)?\\.com|sexytrend\\.ru|sfd-chess\\.ru|silverdaledentistry\\.com|socialmediascanner\\.eset\\.com|sparkle\\.city|srecorder\\.co|success-seo\\.com|subwarez\\.net|tatspecodejda\\.ru|tsgnb\\.ru|thefinery\\.ru|timer4web\\.com|[^.]+\\.tracland\\.ru|valegames\\.com|videos-for-your-business\\.com|video--production\\.com|video-hollywood\\.ru|videohd\\.ws|vskidku\\.ru|vskrytiezamkov55\\.ru|[^.]+\\.[cy]0\\.pl|webmonetizer\\.net|[^.]+\\.webnode\\.fr)",
         operator: 5
       }
     ]
@@ -1422,7 +1477,7 @@ const rules = module.exports =
     chain: [
       {
         where: "SCRIPT_NAME",
-        what: "\/\\.[^\/]+\\.ph(?:p([34x]|\\d?)?|t(ml)?)$",
+        what: "\/\\.[^\/]+\\.ph(?:p[345]?|t|tml)$",
         operator: 5
       }
     ]
@@ -1485,7 +1540,7 @@ const rules = module.exports =
     chain: [
       {
         where: "SCRIPT_NAME",
-        what: "(?:bypass|c99(?:madShell|ud)?|c100|cookie_(?:usage|setup)|diagnostics|dump|endix|gifimg|goog[l1]e.+[\\da-f]{10}|imageth|imlog|r5[47]|safe0ver|sniper|(?:jpe?g|gif|png))\\.ph(?:p([34x]|5\\d?)?|t(ml)?",
+        what: "(?:bypass|c99(?:madShell|ud)?|c100|cookie_(?:usage|setup)|diagnostics|dump|endix|gifimg|goog[l1]e.+[\\da-f]{10}|imageth|imlog|r5[47]|safe0ver|sniper|(?:jpe?g|gif|png))\\.ph(?:p[345]?|t|tml)",
         what_flags: "i",
         operator: 5
       }
@@ -1748,21 +1803,6 @@ const rules = module.exports =
       {
         where: "GET|POST|COOKIE|SERVER:HTTP_USER_AGENT|SERVER:HTTP_REFERER",
         what: "\\b(?:ph(p|ar):\/\/[a-z].+?|data:.*?;\\s*base64.*?,)",
-        what_flags: "i",
-        operator: 5,
-        normalize: true
-      }
-    ]
-  },
-  {
-    id: 525,
-    why: "Serialized PHP object",
-    level: 3,
-    enable: false,
-    chain: [
-      {
-        where: "GET|POST|COOKIE|SERVER:HTTP_USER_AGENT|SERVER:HTTP_REFERER",
-        what: "^.{0,25}[;{}]?\\bO:\\+?\\d+:\"[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*\":\\+?\\d+:{\\w:\\+?\\d+:",
         what_flags: "i",
         operator: 5,
         normalize: true
@@ -2060,4 +2100,35 @@ const rules = module.exports =
       }
     ]
   }
-]
+]);
+
+
+
+const path = 'test.txt';
+const fs = require('fs');
+
+fs.open(path, 'w', function(err, fd) {
+    if (err) {
+        throw 'error opening file: ' + err;
+    }
+
+    fs.write(fd, buf, 0, buf.length, null, function(err) {
+        if (err) throw 'error writing file: ' + err;
+        fs.close(fd, function() {
+            console.log('file written');
+        })
+    });
+});
+
+
+/*
+const path = 'test.txt';
+const fs = require('fs');
+console.time("loadrules2 test");
+fs.readFile(path, function (err, data ) {
+  console.timeEnd("loadrules2 test");
+});
+*/
+console.time("decode test");
+const val = type.fromBuffer(buf);
+console.timeEnd("decode test");

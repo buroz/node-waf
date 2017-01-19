@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "avsc": "^4.1.11",
     "express": "^4.14.0"
   },
   "devDependencies": {},
